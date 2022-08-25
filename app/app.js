@@ -8,6 +8,7 @@ var app = new Vue({
     forecastDays: 10,
     weatherLocation: [],
     currentWeather: [],
+    toDay: new Date(),
   },
   methods: {
     getCurrentLocation: async function () {
@@ -51,7 +52,11 @@ var app = new Vue({
         "Nov",
         "Dic",
       ];
-      return months[value - 1];
+      return months[value];
+    },
+    dayString: function (value) {
+      const days = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"];
+      return days[value - 1];
     },
   },
 });

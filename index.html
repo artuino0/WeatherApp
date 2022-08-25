@@ -1,45 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
-    <link rel="stylesheet" href="src/styles/main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">   
-</head>
-<body>
+    <link rel="stylesheet" href="src/styles/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/09379009c7.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <div id="app">
-        <div class="app-container">
-            <div class="current-weather">
-                <div class="current-condition">
-                    <div class="condition-icon">
-                        <img v-bind:src="currentWeather.condition['icon']" alt="">
-                    </div>
-                    <div class="condition-feels">
-                        {{currentWeather['feelslike_c']}}°C
-                    </div>
-                    <div class="condition-status">
-                        {{currentWeather.condition['text']}}
-                    </div>
-                </div>
-                <div class="current-day">
-                    Today • {{ weatherLocation['localtime'].split('-')[1] | monthString}}
-                </div>
-                <div class="current-location">
-                    {{weatherLocation['name']}}
-                </div>
+      <div class="app-container">
+        <div class="current-weather">
+          <div class="buttons">
+            <button>Search for places</button>
+            <button><i class="fa-solid fa-location-crosshairs"></i></button>
+          </div>
+          <div class="current-condition">
+            <div class="condition-icon">
+              <img v-bind:src="currentWeather.condition['icon']" alt="" />
             </div>
-            <div class="forecast-weather">
-                hola x2
+            <div class="condition-feels">
+              <span class="feels"
+                >{{Math.floor(currentWeather['feelslike_c'])}}</span
+              >°C
             </div>
+            <div class="condition-status">
+              {{currentWeather.condition['text']}}
+            </div>
+          </div>
+          <div class="current-day">
+            Today • {{ toDay.getDay() | dayString }}, {{ toDay.getDate() }} {{
+            toDay.getMonth() | monthString }}
+          </div>
+          <div class="current-location">
+            <i class="fa-solid fa-location-dot"></i>
+            {{weatherLocation['name']}}
+          </div>
         </div>
+        <div class="forecast-weather">hola x2</div>
+      </div>
     </div>
 
     <script src="app/app.js"></script>
-</body>
+  </body>
 </html>
