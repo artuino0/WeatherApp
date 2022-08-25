@@ -22,34 +22,42 @@
   <body>
     <div id="app">
       <div class="app-container">
-        <div class="current-weather">
-          <div class="buttons">
-            <button>Search for places</button>
-            <button><i class="fa-solid fa-location-crosshairs"></i></button>
-          </div>
-          <div class="current-condition">
-            <div class="condition-icon">
-              <img v-bind:src="currentWeather.condition['icon']" alt="" />
-            </div>
-            <div class="condition-feels">
-              <span class="feels"
-                >{{Math.floor(currentWeather['feelslike_c'])}}</span
-              >°C
-            </div>
-            <div class="condition-status">
-              {{currentWeather.condition['text']}}
-            </div>
-          </div>
-          <div class="current-day">
-            Today • {{ toDay.getDay() | dayString }}, {{ toDay.getDate() }} {{
-            toDay.getMonth() | monthString }}
-          </div>
-          <div class="current-location">
-            <i class="fa-solid fa-location-dot"></i>
-            {{weatherLocation['name']}}
-          </div>
+        <div class="loading-spinner" v-if="isLoading">
+          <i class="fa-solid fa-spinner spin"></i>
+          <p>Loading</p>
         </div>
-        <div class="forecast-weather">hola x2</div>
+        <div class="weather" v-if="!isLoading">
+          <div class="current-weather">
+            <div class="buttons">
+              <button>Search for places</button>
+              <button @click="getCurrentLocation()">
+                <i class="fa-solid fa-location-crosshairs"></i>
+              </button>
+            </div>
+            <div class="current-condition">
+              <div class="condition-icon">
+                <img v-bind:src="currentWeather.condition['icon']" alt="" />
+              </div>
+              <div class="condition-feels">
+                <span class="feels"
+                  >{{Math.floor(currentWeather['feelslike_c'])}}</span
+                >°C
+              </div>
+              <div class="condition-status">
+                {{currentWeather.condition['text']}}
+              </div>
+            </div>
+            <div class="current-day">
+              Today • {{ toDay.getDay() | dayString }}, {{ toDay.getDate() }} {{
+              toDay.getMonth() | monthString }}
+            </div>
+            <div class="current-location">
+              <i class="fa-solid fa-location-dot"></i>
+              {{weatherLocation['name']}}
+            </div>
+          </div>
+          <div class="forecast-weather">hola x2</div>
+        </div>
       </div>
     </div>
 

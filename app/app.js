@@ -8,10 +8,13 @@ var app = new Vue({
     forecastDays: 10,
     weatherLocation: [],
     currentWeather: [],
+    forecastWeather: [],
     toDay: new Date(),
+    isLoading: true,
   },
   methods: {
     getCurrentLocation: async function () {
+      this.isLoading = true;
       if (!navigator.geolocation) {
         throw new Error(`Your browser doesn't support Geolocation`);
       }
@@ -29,6 +32,7 @@ var app = new Vue({
         .then((json) => {
           this.weatherLocation = json.location;
           this.currentWeather = json.current;
+          this.isLoading = false;
         })
         .catch((err) => console.log("solicitud fallida: ", err));
     },
