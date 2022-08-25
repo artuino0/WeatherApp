@@ -6,6 +6,8 @@ var app = new Vue({
     apiKey: "key=4e42d51c7463474d87932720222906&",
     queryApi: "",
     forecastDays: 10,
+    weatherLocation: [],
+    currentWeather: [],
   },
   methods: {
     getCurrentLocation: async function () {
@@ -23,11 +25,33 @@ var app = new Vue({
 
       fetch(url)
         .then((response) => response.json())
-        .then((json) => console.log(json))
+        .then((json) => {
+          this.weatherLocation = json.location;
+          this.currentWeather = json.current;
+        })
         .catch((err) => console.log("solicitud fallida: ", err));
     },
   },
   mounted: function () {
     this.getCurrentLocation();
+  },
+  filters: {
+    monthString: function (value) {
+      const months = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dic",
+      ];
+      return months[value - 1];
+    },
   },
 });

@@ -8,10 +8,36 @@
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <link rel="stylesheet" href="src/styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600&display=swap" rel="stylesheet">   
 </head>
 <body>
     <div id="app">
-        <button @click="getCurrentLocation">GetCurrentLocation</button>
+        <div class="app-container">
+            <div class="current-weather">
+                <div class="current-condition">
+                    <div class="condition-icon">
+                        <img v-bind:src="currentWeather.condition['icon']" alt="">
+                    </div>
+                    <div class="condition-feels">
+                        {{currentWeather['feelslike_c']}}°C
+                    </div>
+                    <div class="condition-status">
+                        {{currentWeather.condition['text']}}
+                    </div>
+                </div>
+                <div class="current-day">
+                    Today • {{ weatherLocation['localtime'].split('-')[1] | monthString}}
+                </div>
+                <div class="current-location">
+                    {{weatherLocation['name']}}
+                </div>
+            </div>
+            <div class="forecast-weather">
+                hola x2
+            </div>
+        </div>
     </div>
 
     <script src="app/app.js"></script>

@@ -1,0 +1,35 @@
+:root {
+  --color-acento: #1e213a;
+  --color-base: #100e1d;
+  --font-ligth: #a09fb1;
+}
+
+body {
+  background-color: var(--color-base);
+  margin: 0px;
+  font-family: "Raleway", sans-serif;
+}
+
+.app-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.current-weather {
+  width: 359px;
+  background-color: var(--color-acento);
+  height: 100vh;
+  font-weight: 200;
+  color: var(--font-ligth);
+  text-align: center;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.forecast-weather {
+  width: calc(100% - 359px);
+}
