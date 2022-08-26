@@ -1,0 +1,54 @@
+@media (max-width: 1060px) {
+  .card div:first-child {
+    font-size: 14px;
+  }
+  .detail-data {
+    font-size: 16px !important;
+  }
+
+  .detail-data span {
+    font-size: 32px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .weather {
+    flex-wrap: wrap;
+  }
+  .current-weather {
+    width: 100% !important;
+  }
+
+  .forecast-weather {
+    width: 100% !important;
+
+    justify-content: center;
+  }
+
+  .current-weather .buttons {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .card div:first-child {
+    font-size: 12px;
+  }
+  .detail-data {
+    font-size: 14px !important;
+  }
+
+  .detail-data span {
+    font-size: 24px !important;
+  }
+
+  .forecast-days {
+    font-size: 14px;
+    margin-left: 0px !important;
+    margin: auto !important;
+    margin-top: 25px !important;
+  }
+
+  .forecast-weather {
+  }
+}

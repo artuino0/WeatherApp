@@ -1,7 +1,7 @@
 var app = new Vue({
   el: "#app",
   data: {
-    apiUrl: "http://api.weatherapi.com/v1/",
+    apiUrl: "https://api.weatherapi.com/v1/",
     endPoint: "forecast.json?",
     apiKey: "key=4e42d51c7463474d87932720222906&",
     forecastDays: 10,
