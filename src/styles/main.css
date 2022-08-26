@@ -3,6 +3,7 @@
   --color-base: #100e1d;
   --font-ligth: #a09fb1;
   --button-color: #e7e7eb;
+  --color-input: #e7f0fe;
   --button-background: #6e707a;
 }
 
@@ -26,6 +27,43 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.find-location {
+  position: absolute;
+  top: 95px;
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 35px;
+  padding-right: 35px;
+}
+
+.input input {
+  background-color: var(--color-input);
+  width: 70%;
+  border: none;
+  padding: 15px;
+  outline: none;
+}
+
+.input i:hover {
+  cursor: pointer;
+  color: var(--color-base);
+}
+
+.input {
+  background-color: var(--color-input);
+}
+
+.locations-finded {
+  border: 1px solid var(--font-ligth);
+  margin-top: 10px;
+  padding: 15px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
 }
 
 .loading-spinner i {
@@ -65,7 +103,7 @@ body {
 }
 
 .condition-icon img {
-  width: 80%;
+  width: 187px;
 }
 
 .condition-feels {
@@ -141,4 +179,55 @@ body {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.forecast-weather {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  color: var(--font-ligth);
+}
+
+.forecast-days {
+  background-color: var(--color-acento);
+  color: var(--font-ligth);
+  padding: 20px;
+  margin-left: 8%;
+  margin-top: 30px;
+  text-align: center;
+}
+.max-min {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-details {
+  width: 80%;
+  margin-bottom: 35px;
+  margin-left: 5%;
+}
+
+.current-details {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 35px;
+}
+.current-details .card {
+  width: 40%;
+  background-color: var(--color-acento);
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 25px;
+  box-sizing: border-box;
+  padding: 25px;
+  text-align: center;
+}
+
+.detail-data {
+  font-size: 28px;
+}
+
+.detail-data span {
+  font-size: 80px;
 }

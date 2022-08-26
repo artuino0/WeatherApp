@@ -18,23 +18,68 @@
       src="https://kit.fontawesome.com/09379009c7.js"
       crossorigin="anonymous"
     ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
   </head>
   <body>
     <div id="app">
       <div class="app-container">
-        <div class="loading-spinner" v-if="isLoading">
+        <div
+          class="loading-spinner animate__animated animate__fadeIn"
+          v-if="isLoading"
+        >
           <i class="fa-solid fa-spinner spin"></i>
           <p>Loading</p>
         </div>
         <div class="weather" v-if="!isLoading">
-          <div class="current-weather">
+          <div class="current-weather animate__animated animate__slideInLeft">
+            <!-- Botones de busqueda y geolocalizacion -->
             <div class="buttons">
-              <button>Search for places</button>
-              <button @click="getCurrentLocation()">
+              <button @click="isFinding = !isFinding" v-if="!isFinding">
+                Search for places
+              </button>
+              <button @click="getCurrentLocation()" v-if="!isFinding">
                 <i class="fa-solid fa-location-crosshairs"></i>
               </button>
+              <!-- Buttons on finding -->
+              <button style="visibility: hidden" v-if="isFinding">
+                Search for places
+              </button>
+              <button @click="isFinding = !isFinding" v-if="isFinding">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
             </div>
-            <div class="current-condition">
+            <!-- Panel de busqueda de clima por palabras clave -->
+            <div
+              class="find-location animate__animated animate__slideInUp"
+              v-if="isFinding"
+            >
+              <div class="input">
+                <i
+                  @click="findLocation(keyword)"
+                  class="fa-solid fa-magnifying-glass"
+                ></i>
+                <input
+                  type="text"
+                  name="keyword"
+                  id="keyword"
+                  v-model="keyword"
+                  placeholder="Guanajuato, MX"
+                />
+              </div>
+              <div
+                class="locations-finded"
+                v-for="location in locationResponse"
+                @click="getWeather(`${location.name}%20${location.region}`)"
+              >
+                <div>{{location.name}}, {{location.region}}</div>
+                <i class="fa-solid fa-angle-right"></i>
+              </div>
+            </div>
+            <!-- Panel de clima actual -->
+            <div class="current-condition" v-if="!isFinding">
               <div class="condition-icon">
                 <img v-bind:src="currentWeather.condition['icon']" alt="" />
               </div>
@@ -46,17 +91,59 @@
               <div class="condition-status">
                 {{currentWeather.condition['text']}}
               </div>
-            </div>
-            <div class="current-day">
-              Today • {{ toDay.getDay() | dayString }}, {{ toDay.getDate() }} {{
-              toDay.getMonth() | monthString }}
-            </div>
-            <div class="current-location">
-              <i class="fa-solid fa-location-dot"></i>
-              {{weatherLocation['name']}}
+              <div class="current-day">
+                Today • {{ toDay.getDate() | dayString }}, {{ toDay.getDate() }}
+                {{ toDay.getMonth() | monthString }}
+              </div>
+              <div class="current-location">
+                <i class="fa-solid fa-location-dot"></i>
+                {{weatherLocation['name']}}
+              </div>
             </div>
           </div>
-          <div class="forecast-weather">hola x2</div>
+          <!-- forecast and current weather details -->
+          <div class="forecast-weather">
+            <div class="forecast-days" v-for="forecast in forecastWeather">
+              {{forecast.date.split("-")[2] | dayString}},
+              {{forecast.date.split("-")[2]}} {{(forecast.date.split("-")[1] *
+              1) -1 | monthString}}
+
+              <div class="forecast-condition-icon">
+                <img v-bind:src="forecast.day.condition['icon']" alt="" />
+              </div>
+              <div class="max-min">
+                <div>{{Math.floor(forecast.day['maxtemp_c'])}}°C</div>
+                <div>{{Math.floor(forecast.day['mintemp_c'])}}°C</div>
+              </div>
+            </div>
+            <div class="current-details">
+              <div class="title-details">Today’s Hightlights</div>
+              <div class="card wind">
+                <div>Wind status</div>
+                <div class="detail-data">
+                  <span>{{currentWeather['wind_kph']}}</span>kph
+                </div>
+              </div>
+              <div class="card wind">
+                <div>Humidity</div>
+                <div class="detail-data">
+                  <span>{{currentWeather['humidity']}}</span>%
+                </div>
+              </div>
+              <div class="card wind">
+                <div>Visibility</div>
+                <div class="detail-data">
+                  <span>{{currentWeather["vis_km"]}}</span>km
+                </div>
+              </div>
+              <div class="card wind">
+                <div>Air pressure</div>
+                <div class="detail-data">
+                  <span>{{currentWeather['pressure_mb']}}</span>mb
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
